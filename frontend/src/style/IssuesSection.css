@@ -1,0 +1,39 @@
+.IssuesSection {
+  width: 100%;
+}
+
+.IssuesSection__container {
+  height: 40px;
+  display: flex;
+  padding-left: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.096);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.IssuesSection__container-2 {
+  display: flex;
+}
+
+.IssuesSection__container-name {
+  width: 150px;
+  color: #000;
+  text-decoration: none;
+}
+
+.IssuesSection__container-title {
+  width: 600px;
+}
+
+.IssuesSection__container-status {
+  width: 150px;
+}
+
+.IssuesSection__container-id {
+  padding-left: 5px;
+  width: 145px;
+}
+
+.IssuesSection__container-lastModified {
+  width: 200px;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
+import IssuesSection from '../components/IssuesSection';
 import '../style/HomeScreen.css';
 
 const HomeScreen = () => {
+  window.scrollTo(0, 0);
   return (
     <>
       <div class="home">
@@ -21,9 +23,10 @@ const HomeScreen = () => {
               <div class="title-1">Name</div>
               <div class="title-1 mod-1">Title</div>
               <div class="title-1">Status</div>
-              <div class="title-1 mod-2">ID</div>
+              <div class="title-1">ID</div>
               <div class="title-1">Last Modified</div>
             </div>
+            <IssuesSection />
           </div>
         </div>
       </div>
