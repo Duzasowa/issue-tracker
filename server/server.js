@@ -1,6 +1,10 @@
 import express from "express";
-import issues from "./data/Issues.js"
+import issues from "./data/Issues.js";
+import dotenv from "dotenv";
+import connectDatabase from "./config/MongoDB.js";
 
+dotenv.config();
+connectDatabase();
 const app = express();
 
 // LOAD ISSUES FROM SERVER
@@ -18,4 +22,6 @@ app.get("/", (req, res) => {
   res.send("API IS Running....")
 });
 
-app.listen(5000, console.log("Server Working..."));
+const PORT = process.env.PORT || 5001
+
+app.listen(PORT, console.log(`Server start in port ${PORT}`));
