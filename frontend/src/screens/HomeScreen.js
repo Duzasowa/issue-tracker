@@ -1,5 +1,6 @@
 import React from 'react';
 import IssuesSection from '../components/IssuesSection';
+import Navbar from '../components/Navbar';
 import '../style/HomeScreen.css';
 
 const HomeScreen = () => {
@@ -8,14 +9,7 @@ const HomeScreen = () => {
     <>
       <div class="home">
         {/* Navbar */}
-        <div class="navbar">
-          <div class="navbar__container">
-            <div class="navbar__icon" />
-            <div class="navbar__text-container">
-              <div class="navbar__name">IssueTrack</div>
-            </div>
-          </div>
-        </div>
+        <Navbar />
         {/* Main Body */}
         <div class="home__body">
           <div class="home__container">
