@@ -50,7 +50,12 @@ const IssuesSection = () => {
               </div>
               <div className="IssuesSection__container-status">
                 <>
-                  Active
+                  <select>
+                    <option>{issue.status}</option>
+                    <option>Progress</option>
+                    <option>Done</option>
+                  </select>
+                  
                 </>
               </div>
               <div className="IssuesSection__container-id">

@@ -16,9 +16,9 @@ const HomeScreen = () => {
             <div class="home__title">
               <div class="title-1">Name</div>
               <div class="title-1 mod-1">Title</div>
-              <div class="title-1">Status</div>
-              <div class="title-1">ID</div>
-              <div class="title-1">Last Modified</div>
+              <div class="title-1 mod-3">Status</div>
+              <div class="title-1 mod-2">ID</div>
+              <div class="title-1">Was created</div>
             </div>
             <IssuesSection />
           </div>

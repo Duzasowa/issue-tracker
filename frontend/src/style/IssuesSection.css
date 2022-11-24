@@ -22,16 +22,16 @@
 }
 
 .IssuesSection__container-title {
-  width: 600px;
+  width: 536px;
 }
 
 .IssuesSection__container-status {
-  width: 150px;
+  width: 82px;
 }
 
 .IssuesSection__container-id {
   padding-left: 5px;
-  width: 145px;
+  width: 209px;
 }
 
 .IssuesSection__container-lastModified {

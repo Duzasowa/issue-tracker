@@ -17,10 +17,15 @@ const SingleIssue = () => {
   return (
     <>
       <Navbar />
-      <div className="container single-product">
-        {issue.name}
-        <div class="">
-          {issue.title}
+      <div class="singleIssue">
+        <div>{issue.name}</div>
+        <div>{issue.title}</div>
+        <div>
+          <select>
+            <option>Active</option>
+            <option>Progress</option>
+            <option>Done</option>
+          </select>         
         </div>
       </div>
     </>

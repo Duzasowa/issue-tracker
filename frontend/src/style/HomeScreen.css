@@ -18,6 +18,8 @@ body {
   width: 300px;
   display: flex;
   height: 60px;
+  text-decoration: none;
+  color: black;
   align-items: center;
   margin-left: 60px;
 }
@@ -90,9 +92,13 @@ body {
 }
 
 .mod-1 {
-  width: 568px;
+  width: 525px;
 }
 
 .mod-2 {
   width: 200px;
+}
+
+.mod-3 {
+  width: 80px;
 }
