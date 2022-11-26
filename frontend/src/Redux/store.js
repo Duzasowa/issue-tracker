@@ -1,11 +1,12 @@
 import { createStore, combineReducers, applyMiddleware} from "redux"; 
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { issueDetailsReducer, issueListReducer, issueUpdateReducer } from "./Reducers/IssueReducers";
+import { issueCreateReducer, issueDetailsReducer, issueListReducer, issueUpdateReducer } from "./Reducers/IssueReducers";
 
 const reducer = combineReducers({
   issueList : issueListReducer,
   issueDetails : issueDetailsReducer,
+  issueCreate: issueCreateReducer,
   issueUpdate: issueUpdateReducer,
 });
 

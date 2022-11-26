@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from './screens/HomeScreen';
 import NotFound from './screens/NotFound';
 import SingleIssue from "./screens/SingleIssue";
+import IssueEditScreen from "./screens/IssueEditScreen";
+import AddProduct from "./screens/AddIssue";
 
 const App = () => {
   return (
@@ -11,6 +13,11 @@ const App = () => {
         <Route exact path="/" element={<HomeScreen/>}/>
         <Route path="/issues/:id" element={<SingleIssue/>} exact/>
         <Route path="*" element={<NotFound/>}/>
+        <Route path="/addproduct" element={<AddProduct/>} />
+        {/* <Route 
+            path="/issues/:id/edit" 
+            element={<IssueEditScreen/>} 
+        /> */}
       </Routes>
     </Router>
   )

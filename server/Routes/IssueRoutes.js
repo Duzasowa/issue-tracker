@@ -27,22 +27,67 @@ IssueRoute.get(
   })
 );
 
-//UPDATE ISSUE
+//CREATE ISSUE
+IssueRoute.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const {name, title, status} = req.body
+    const issueExist = await Issue.findOne({name})
+    if (issueExist) {
+      res.status(400);
+      throw new Error("Issue name already exist");
+    } else {
+      const issue = new Issue({
+        name,title,status
+      });
+      if(issue) {
+        const createdissue = await issue.save()
+        res.status(201).json(createdissue)
+      }
+      else {
+        res.status(400);
+        throw new Error("Invalid issue data")
+      }
+    }
+  })
+);
+
+//EDIT ISSUE
 IssueRoute.put(
-  "/:id", 
-  asyncHandler (async(req, res) => {
-    const { status } = req.body;
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const {name, title, status} = req.body
     const issue = await Issue.findById(req.params.id);
     if (issue) {
-      issue.status = status;
+      issue.name = name || issue.name;
+      issue.title = title || issue.title;
+      issue.status = status || issue.status;
 
       const updatedIssue = await issue.save();
       res.json(updatedIssue);
     } else {
       res.status(404);
-      throw new Error("Product not Found");
+      throw new Error("Issue not found")
     }
   })
 );
+
+//UPDATE ISSUE
+// IssueRoute.put(
+//   "/:id", 
+//   asyncHandler (async(req, res) => {
+//     const { status } = req.body;
+//     const issue = await Issue.findById(req.params.id);
+//     if (issue) {
+//       issue.status = status;
+
+//       const updatedIssue = await issue.save();
+//       res.json(updatedIssue);
+//     } else {
+//       res.status(404);
+//       throw new Error("Product not Found");
+//     }
+//   })
+// );
 
 export default IssueRoute;

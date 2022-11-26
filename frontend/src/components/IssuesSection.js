@@ -75,6 +75,8 @@ const IssuesSection = () => {
                       Nov 20.04.2022 19:43:32
                     </>
                   </div>
+                  <Link to={''}>Edit</Link>
+                  <a class="">Delete</a>
                 </div>
               </div>
             ))}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
+import { ISSUE_CREATE_FAIL, ISSUE_CREATE_REQUEST, ISSUE_CREATE_SUCCESS, ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
 
 
 // ISSUE LIST
@@ -28,6 +28,31 @@ export const listIssueDetails = (id) => async(dispatch) => {
   } catch (error) {
     dispatch({
       type: ISSUE_DETAILS_FAIL,
+      payload:
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    });
+  }
+}
+
+// ISSUE CREATE 
+export const createIssue = (name, title, status) => async(dispatch) => {
+  try {
+    dispatch({type: ISSUE_CREATE_REQUEST});
+
+    const {data} = await axios.post(
+      `/api/issues/`,
+      {
+        name,
+        title,
+        status
+      }
+    );
+    dispatch({ type: ISSUE_CREATE_SUCCESS, payload: data});
+  } catch (error) {
+    dispatch({
+      type: ISSUE_CREATE_FAIL,
       payload:
       error.response && error.response.data.message
         ? error.response.data.message

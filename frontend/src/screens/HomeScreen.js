@@ -1,6 +1,7 @@
 import React from 'react';
 import IssuesSection from '../components/IssuesSection';
 import Navbar from '../components/Navbar';
+import { Link } from "react-router-dom";
 import '../style/HomeScreen.css';
 
 const HomeScreen = () => {
@@ -23,6 +24,7 @@ const HomeScreen = () => {
             <IssuesSection />
           </div>
         </div>
+        <Link to={`/addproduct`}>New issue</Link>
       </div>
     </>
   );
