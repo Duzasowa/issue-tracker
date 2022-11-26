@@ -2,10 +2,10 @@ import express from "express";
 import asyncHandler from "express-async-handler";
 import Issue from "../Models/IssueModel.js";
 
-const issueRoute = express.Router()
+const IssueRoute = express.Router()
 
 // GET ALL ISSUES
-issueRoute.get(
+IssueRoute.get(
   "/", 
   asyncHandler (async(req, res) => {
     const issues = await Issue.find({});
@@ -14,7 +14,7 @@ issueRoute.get(
 );
 
 // GET SINGLE ISSUE
-issueRoute.get(
+IssueRoute.get(
   "/:id", 
   asyncHandler (async(req, res) => {
     const issue = await Issue.findById(req.params.id);
@@ -27,4 +27,22 @@ issueRoute.get(
   })
 );
 
-export default issueRoute;
+//UPDATE ISSUE
+IssueRoute.put(
+  "/:id", 
+  asyncHandler (async(req, res) => {
+    const { status } = req.body;
+    const issue = await Issue.findById(req.params.id);
+    if (issue) {
+      issue.status = status;
+
+      const updatedIssue = await issue.save();
+      res.json(updatedIssue);
+    } else {
+      res.status(404);
+      throw new Error("Product not Found");
+    }
+  })
+);
+
+export default IssueRoute;

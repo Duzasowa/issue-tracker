@@ -2,18 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { listIssueDetails } from "../Redux/Action/IssueActions";
 
-const SingleIssue = () => {
-  const [issue, setIssue] = useState({});
-  const { id } = useParams();
+const SingleIssue = ({ match }) => {
+  // const issueId = match.params.id;
+  const { id }= useParams();
+  const dispatch = useDispatch();
+
+  const issueDetails = useSelector((state) => state.issueDetails)
+  const {loading, error, issue} = issueDetails;
 
   useEffect(() => {
-    const fetchissue = async () => {
-      const { data } = await axios.get(`/api/issues/`+ id);
-      setIssue(data);
-    };
-    fetchissue();
-  }, []);
+    dispatch(listIssueDetails(id));
+  }, [dispatch, id])
   return (
     <>
       <Navbar />

@@ -9,7 +9,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route exact path="/" element={<HomeScreen/>}/>
-        <Route path="/issues/:id" element={<SingleIssue/>} />
+        <Route path="/issues/:id" element={<SingleIssue/>} exact/>
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </Router>
