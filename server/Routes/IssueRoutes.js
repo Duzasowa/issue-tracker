@@ -72,22 +72,19 @@ IssueRoute.put(
   })
 );
 
-//UPDATE ISSUE
-// IssueRoute.put(
-//   "/:id", 
-//   asyncHandler (async(req, res) => {
-//     const { status } = req.body;
-//     const issue = await Issue.findById(req.params.id);
-//     if (issue) {
-//       issue.status = status;
-
-//       const updatedIssue = await issue.save();
-//       res.json(updatedIssue);
-//     } else {
-//       res.status(404);
-//       throw new Error("Product not Found");
-//     }
-//   })
-// );
+// DELETE ISSUE
+IssueRoute.delete(
+  "/:id", 
+  asyncHandler (async (req, res) => {
+    const issue = await Issue.findById(req.params.id);
+    if (issue) {
+      await issue.remove();
+      res.json({ message: "Issue deleted "});
+    } else {
+      res.status(404);
+      throw new Error("Issue not Found");
+    }
+  })
+);
 
 export default IssueRoute;

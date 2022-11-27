@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ISSUE_CREATE_FAIL, ISSUE_CREATE_REQUEST, ISSUE_CREATE_SUCCESS, ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_EDIT_FAIL, ISSUE_EDIT_REQUEST, ISSUE_EDIT_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
+import { ISSUE_CREATE_FAIL, ISSUE_CREATE_REQUEST, ISSUE_CREATE_SUCCESS, ISSUE_DELETE_FAIL, ISSUE_DELETE_REQUEST, ISSUE_DELETE_SUCCESS, ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_EDIT_FAIL, ISSUE_EDIT_REQUEST, ISSUE_EDIT_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
 
 
 // ISSUE LIST
@@ -103,3 +103,21 @@ export const updateIssue =
     });
   }
 }
+
+// DELETE ISSUE
+export const deleteIssue = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ISSUE_DELETE_REQUEST });
+    await axios.delete(`/api/issues/${id}`);
+    dispatch({ type: ISSUE_DELETE_SUCCESS });
+  } catch (error) {
+    const message = 
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch ({
+      type: ISSUE_DELETE_FAIL,
+      payload: message,
+    });
+  } 
+};

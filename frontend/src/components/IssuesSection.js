@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useDispatch, useSelector } from 'react-redux';
-import { listIssue } from '../Redux/Action/IssueActions';
+import { deleteIssue, listIssue } from '../Redux/Action/IssueActions';
 import { Link } from "react-router-dom";
 import "../style/IssuesSection.css";
 
@@ -9,11 +9,20 @@ const IssuesSection = () => {
   const dispatch = useDispatch();
 
   const issueList = useSelector((state) => state.issueList)
-  const {loading, error, issues} = issueList
+  const {loading, error, issues} = issueList;
+
+  const issueDelete = useSelector((state) => state.issueDelete);
+  const { error: errorDelete, success: successDelete } = issueDelete;
+
+  const deletehandler = (id) => {
+    if (window.confirm("are you sure???")) {
+      dispatch(deleteIssue(id));
+    }
+  };
 
   useEffect(() => {
     dispatch(listIssue());
-  }, [dispatch]);
+  }, [dispatch, successDelete]);
   return (
     <>
       <div className="IssuesSection">
@@ -74,7 +83,7 @@ const IssuesSection = () => {
                     </>
                   </div>
                   <Link to={`/issues/${issue._id}/edit`}>Edit</Link>
-                  <a class="">Delete</a>
+                  <Link to="#" onClick={() => deletehandler(issue._id)}>Delete</Link>
                 </div>
               </div>
             ))}
