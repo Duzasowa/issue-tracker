@@ -1,7 +1,6 @@
 import React from 'react';
 import IssuesSection from '../components/IssuesSection';
 import Navbar from '../components/Navbar';
-import { Link } from "react-router-dom";
 import '../style/HomeScreen.css';
 
 const HomeScreen = () => {
@@ -19,12 +18,11 @@ const HomeScreen = () => {
               <div class="title-1 mod-1">Title</div>
               <div class="title-1 mod-3">Status</div>
               <div class="title-1 mod-2">ID</div>
-              <div class="title-1">Was created</div>
+              <div class="title-1">Updated</div>
             </div>
             <IssuesSection />
           </div>
         </div>
-        <Link to={`/addproduct`}>New issue</Link>
       </div>
     </>
   );

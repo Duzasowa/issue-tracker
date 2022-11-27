@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { editIssue, listIssueDetails, updateIssue } from "../Redux/Action/IssueActions";
+import { editIssue, updateIssue } from "../Redux/Action/IssueActions";
 import { ISSUE_UPDATE_RESET } from "../Redux/Constants/IssueConstants";
+import '../style/singleIssue.css';
 
 const SingleIssue = () => {
   const { id }= useParams();
@@ -16,12 +16,10 @@ const SingleIssue = () => {
   const dispatch = useDispatch();
 
   const issueEdit = useSelector((state) => state.issueEdit)
-  const {loading, error, issue} = issueEdit;
+  const {issue} = issueEdit;
 
   const issueUpdate = useSelector((state) => state.issueUpdate);
   const {
-    loading: loadingUpdate,
-    error: errorUpdate,
     success: successUpdate,
   } = issueUpdate;
 
@@ -54,55 +52,69 @@ const SingleIssue = () => {
     <>
       <Navbar />
       <div class="singleIssue">
-        <form onSubmit={submitHanlder}>
-          <Link to="/">
-            Go to Issues
-          </Link>
-          <h2>Update Issue</h2>
-          <div>
-            <button type="submit">
-              Update now
-            </button>
-          </div>
-          <div>
-            <div>
-              <label>
-                Issue name
-              </label>
-              <input
-                type="text"
-                placeholder="TypeHere"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
+        <div class="singleIssue__table">
+          <form onSubmit={submitHanlder}>
+            <div class="singleIssue__button">
+              <Link style={{color:'white', textDecoration:'none'}} to="/">
+                Go to Issues
+              </Link>
+            </div>
+
+            <div class="viccx">
+              Update Issue
             </div>
             <div>
-              <label>
-                Issue title
-              </label>
-              <input
-                type="text"
-                placeholder="TypeHere"
-                required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
+              <div class="jwqml">
+                <label class="vkcsx">
+                  Issue name
+                </label>
+                <input
+                  type="text"
+                  placeholder="TypeHere"
+                  class="gqhci"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div class="jwqml">
+                <label class="vkcsx">
+                  Issue title
+                </label>
+                <textarea
+                  type="text"
+                  placeholder="TypeHere"
+                  class="gqhci"
+                  required
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
+              <div class="jwqml">
+                <label class="vkcsx">
+                  Issue status
+                </label>
+                <select 
+                  type="text"
+                  class="gqhci"
+                  placeholder="Choose Here"
+                  required
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                >
+                  <option>Active</option>
+                  <option>Progress</option>
+                  <option>Done</option>
+                </select>
+              </div>
             </div>
             <div>
-              <label>
-                Issue status
-              </label>
-              <input
-                type="text"
-                placeholder="TypeHere"
-                required
-                value={status}
-                onChange={(e) => setStatus(e.target.value)}
-              />
+              <button class="yysbb" type="submit">
+                Update now
+              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
 

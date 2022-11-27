@@ -15,7 +15,6 @@ body {
 }
 
 .navbar__container {
-  width: 300px;
   display: flex;
   height: 60px;
   text-decoration: none;
@@ -82,23 +81,43 @@ body {
 }
 
 .title-1 {
-  width: 140px;
+  width: 123px;
   height: 40px;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  padding-left: 8px;
   color: #ffff;
   font-weight: 800;
 }
 
 .mod-1 {
-  width: 525px;
+  width: 509px;
 }
 
 .mod-2 {
-  width: 200px;
+  width: 190px;
 }
 
 .mod-3 {
+  width: 74px;
+}
+
+.new__issue-button {
   width: 80px;
+  height: 30px;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-left: 1150px;
+  font-size: 12px;
+  font-weight: 800;
+  color: white;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(54, 4, 54);
+}
+
+.new__issue-button:hover {
+  background-color: rgba(54, 4, 54, 0.623);
 }

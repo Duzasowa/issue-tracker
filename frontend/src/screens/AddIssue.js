@@ -1,16 +1,10 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { toast } from "react-toastify";
 import { ISSUE_CREATE_RESET } from "../Redux/Constants/IssueConstants";
 import { createIssue } from "../Redux/Action/IssueActions";
-import Toast from "../components/LoadingError/Toast";
+import Navbar from "../components/Navbar";
+import '../style/AddIssue.css';
 
-const ToastObjects = {
-  pauseOnFocusLoss: false,
-  draggable: false,
-  pauseOnHover: false,
-  autoClose: 2000,
-};
 
 const AddIssue = () => {
   const [name, setName] = useState("")
@@ -24,7 +18,6 @@ const AddIssue = () => {
 
   useEffect(() => {
     if (issue) {
-      toast.success("Issue Added", ToastObjects)
       dispatch({type:ISSUE_CREATE_RESET})
       setName("")
       setTitle("")
@@ -39,45 +32,56 @@ const AddIssue = () => {
 
   return (
     <>
-    <Toast/>
-      <div>
-        <form onSubmit={submitHandler}>
-          <button type="submit">
-            Sibmit
-          </button>
-          {error && "Error"}
-          {loading && "Loading..."}
-          <div>
-            <label>Product Name</label>
-            <input
-              type="text"
-              placeholder='Type Here'
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div>
-            <label>Product Title</label>
-            <input
-              type="text"
-              placeholder='Type Here'
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div>
-            <label>Product Status</label>
-            <input
-              type="text"
-              placeholder='Type Here'
-              required
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            />
-          </div>
-        </form>
+    <Navbar />
+      <div class="addissue">
+        <div class="addissue__container">
+          <form onSubmit={submitHandler}>
+            <div class="yykha">Adds a new Issue</div>
+            {error && "Error"}
+            {loading && "Loading..."}
+            <div class="vmbbn">
+              <label class="owzju">Issue Name</label>
+              <input
+                type="text"
+                class="inqsf"
+                placeholder='Type Here'
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div class="vmbbn">
+              <label class="owzju">Issue Title</label>
+              <input
+                type="text"
+                class="inqsf"
+                placeholder='Type Here'
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div class="vmbbn">
+              <label class="owzju">Issue Status</label>
+              <select
+                type="text" 
+                class="inqsf"
+                placeholder='Type Here'
+                required
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <option></option>
+                <option>Active</option>
+                <option>Progress</option>
+                <option>Done</option>
+              </select>
+            </div>
+            <button type="submit">
+              Sibmit
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );

@@ -1,0 +1,32 @@
+.addissue {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addissue__container {
+  width: 400px;
+  height: 300px;
+}
+
+.yykha {
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.vmbbn {
+  display: flex;
+  flex-direction: column;
+}
+
+.owzju {
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.inqsf {
+  margin-bottom: 12px;
+}

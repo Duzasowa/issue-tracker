@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import '../style/HomeScreen.css';
 
 const Navbar = () => {
@@ -9,6 +10,7 @@ const Navbar = () => {
         <div class="navbar__text-container">
           <div class="navbar__name">IssueTrack</div>
         </div>
+        <Link class="new__issue-button" to={`/addproduct`}>New issue</Link>
       </a>
     </div>
   );
