@@ -64,5 +64,26 @@ Start the server
 
 ## MongoDB
 
-Insert gif or link to demo
+The database is running and ready to work. (Can accept a request from any IP address)
+
+
+
+
+## How to use the project
+ Server:
+
+* server/Routes/IssueRoutes.js --> Elaboration of routes
+* server/Models/IssueModel.js --> Description of the "Issue" model for the database
+* server/config/MongoDB.js --> Сonnection to the database
+
+ Client:
+
+* frontend/components/ --> Project components
+* frontend/Redux --> routers, actions, constants
+* frontend/screens --> Project pages
+
+
+
+
+
 
