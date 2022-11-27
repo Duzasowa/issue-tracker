@@ -29,30 +29,28 @@ const IssuesSection = () => {
                 key={issue._id}
               >
                 <div className="IssuesSection__container-2">
-                  <Link to={`/issues/${issue._id}`}>
+                  <div>
                     <div className="shopBack">
                       <div alt={issue.name} />
                     </div>
-                  </Link>
+                  </div>
 
                   <div className="IssuesSection__container-name">
                     <>
-                      <Link 
+                      <div 
                         style={{color: 'black', textDecoration: 'none'}}
-                        to={`/issues/${issue._id}`}
                       >
                         {issue.name}
-                      </Link>
+                      </div>
                     </>
                   </div>
                   <div className="IssuesSection__container-title">
                     <>
-                      <Link 
+                      <div 
                         style={{color: 'black', textDecoration: 'none'}}
-                        to={`/issues/${issue._id}`}
                       >
                         {issue.title}
-                      </Link>
+                      </div>
                     </>
                   </div>
                   <div className="IssuesSection__container-status">
@@ -75,7 +73,7 @@ const IssuesSection = () => {
                       Nov 20.04.2022 19:43:32
                     </>
                   </div>
-                  <Link to={''}>Edit</Link>
+                  <Link to={`/issues/${issue._id}/edit`}>Edit</Link>
                   <a class="">Delete</a>
                 </div>
               </div>

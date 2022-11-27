@@ -11,13 +11,9 @@ const App = () => {
     <Router>
       <Routes>
         <Route exact path="/" element={<HomeScreen/>}/>
-        <Route path="/issues/:id" element={<SingleIssue/>} exact/>
+        <Route path="/issues/:id/edit" element={<SingleIssue/>}/>
         <Route path="*" element={<NotFound/>}/>
         <Route path="/addproduct" element={<AddProduct/>} />
-        {/* <Route 
-            path="/issues/:id/edit" 
-            element={<IssueEditScreen/>} 
-        /> */}
       </Routes>
     </Router>
   )

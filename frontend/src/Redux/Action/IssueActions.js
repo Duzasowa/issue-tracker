@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ISSUE_CREATE_FAIL, ISSUE_CREATE_REQUEST, ISSUE_CREATE_SUCCESS, ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
+import { ISSUE_CREATE_FAIL, ISSUE_CREATE_REQUEST, ISSUE_CREATE_SUCCESS, ISSUE_DETAILS_FAIL, ISSUE_DETAILS_REQUEST, ISSUE_DETAILS_SUCCESS, ISSUE_EDIT_FAIL, ISSUE_EDIT_REQUEST, ISSUE_EDIT_SUCCESS, ISSUE_LIST_FAIL, ISSUE_LIST_REQUEST, ISSUE_LIST_SUCCESS, ISSUE_UPDATE_FAIL, ISSUE_UPDATE_REQUEST, ISSUE_UPDATE_SUCCESS } from "../Constants/IssueConstants";
 
 
 // ISSUE LIST
@@ -61,6 +61,24 @@ export const createIssue = (name, title, status) => async(dispatch) => {
   }
 }
 
+// EDIT ISSUE
+export const editIssue = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: ISSUE_EDIT_REQUEST });
+    const { data } = await axios.get(`/api/issues/${id}`);
+    dispatch({ type: ISSUE_EDIT_SUCCESS , payload: data });
+  } catch (error) {
+    const message = 
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch ({
+      type: ISSUE_EDIT_FAIL,
+      payload: message,
+    });
+  } 
+};
+
 // ISSUE UPDATE
 export const updateIssue = 
   (issue) => 
@@ -74,6 +92,7 @@ export const updateIssue =
     );
     
     dispatch({ type: ISSUE_UPDATE_SUCCESS, payload: data});
+    dispatch({ type: ISSUE_EDIT_SUCCESS, payload: data});
   } catch (error) {
     dispatch({
       type: ISSUE_UPDATE_FAIL,

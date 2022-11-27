@@ -1,34 +1,108 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { listIssueDetails } from "../Redux/Action/IssueActions";
+import { editIssue, listIssueDetails, updateIssue } from "../Redux/Action/IssueActions";
+import { ISSUE_UPDATE_RESET } from "../Redux/Constants/IssueConstants";
 
-const SingleIssue = ({ match }) => {
-  // const issueId = match.params.id;
+const SingleIssue = () => {
   const { id }= useParams();
+
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [status, setStatus] = useState("");
+
   const dispatch = useDispatch();
 
-  const issueDetails = useSelector((state) => state.issueDetails)
-  const {loading, error, issue} = issueDetails;
+  const issueEdit = useSelector((state) => state.issueEdit)
+  const {loading, error, issue} = issueEdit;
+
+  const issueUpdate = useSelector((state) => state.issueUpdate);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = issueUpdate;
 
   useEffect(() => {
-    dispatch(listIssueDetails(id));
-  }, [dispatch, id])
+    if (successUpdate) {
+      dispatch({type: ISSUE_UPDATE_RESET});
+    } else {
+      if (!issue.name || issue._id !== id) {
+        dispatch(editIssue(id));
+      }
+      else {
+        setName(issue.name);
+        setTitle(issue.title);
+        setStatus(issue.status);
+      }
+    }
+  }, [issue, dispatch, id, successUpdate]);
+  
+  const submitHanlder = (e) => {
+    e.preventDefault();
+    dispatch(updateIssue({
+      _id: id,
+      name,
+      title,
+      status,
+    }))
+  }
+
   return (
     <>
       <Navbar />
       <div class="singleIssue">
-        <div>{issue.name}</div>
-        <div>{issue.title}</div>
-        <div>
-          <select>
-            <option>Active</option>
-            <option>Progress</option>
-            <option>Done</option>
-          </select>         
-        </div>
+        <form onSubmit={submitHanlder}>
+          <Link to="/">
+            Go to Issues
+          </Link>
+          <h2>Update Issue</h2>
+          <div>
+            <button type="submit">
+              Update now
+            </button>
+          </div>
+          <div>
+            <div>
+              <label>
+                Issue name
+              </label>
+              <input
+                type="text"
+                placeholder="TypeHere"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>
+                Issue title
+              </label>
+              <input
+                type="text"
+                placeholder="TypeHere"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+            <div>
+              <label>
+                Issue status
+              </label>
+              <input
+                type="text"
+                placeholder="TypeHere"
+                required
+                value={status}
+                onChange={(e) => setStatus(e.target.value)}
+              />
+            </div>
+          </div>
+        </form>
       </div>
     </>
 
